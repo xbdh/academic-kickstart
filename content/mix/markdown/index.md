@@ -1,14 +1,14 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "Learngit"
+title: "Markdown"
 subtitle: ""
 summary: ""
 authors: []
 tags: []
 categories: []
-date: 2019-12-02T16:29:57+08:00
-lastmod: 2019-12-02T16:29:57+08:00
+date: 2020-05-19T17:07:24+08:00
+lastmod: 2020-05-19T17:07:24+08:00
 featured: false
 draft: false
 
@@ -27,7 +27,3 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 ---
-
-
-
-# 思考的方式将

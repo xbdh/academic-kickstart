@@ -1,14 +1,14 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "Learngit"
+title: "Hugo"
 subtitle: ""
-summary: ""
+summary: "常用操作命令"
 authors: []
 tags: []
 categories: []
-date: 2019-12-02T16:29:57+08:00
-lastmod: 2019-12-02T16:29:57+08:00
+date: 2020-05-19T16:50:54+08:00
+lastmod: 2020-05-19T16:50:54+08:00
 featured: false
 draft: false
 
@@ -28,6 +28,43 @@ image:
 projects: []
 ---
 
+### 
+
+### 1、新建文件
+
+```go
+例子1：三个文件在同一文件夹内，index后缀默认路由
+
+hugo new -kind=post post/post-name/index.md
+//路由：http://www.example.com/post-name/
+
+hugo new -kind=post post/post-name/a.md
+//路由：http://www.example.com/post-name/a/
+
+hugo new -kind=post post/post-name/b.md
+//路由：http://www.example.com/post-name/b/
 
 
-# 思考的方式将
+例子2：
+hugo new -kind=post post/post-name.md
+//路由：http://www.example.com/post-name
+
+-kind 可以省略
+```
+
+
+
+### 2、启动
+
+```go
+hugo server
+```
+
+
+
+### 3、新建网站
+
+```go
+hugo new site [path/name]
+```
+

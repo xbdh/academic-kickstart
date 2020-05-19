@@ -16,7 +16,7 @@ draft: false
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
-  caption: ""
+  caption: "featured"
   focal_point: ""
   preview_only: false
 
@@ -65,3 +65,5 @@ panic:触发异常
 **分析**
 
 > `defer` 的执行顺序是先进后出，当初`panic`语句时，会先按照`defer`的后进先出的顺序执行，最后才执行`panic`
+
+![gdhdf](./featured.jpg)

@@ -1,14 +1,14 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "Learngit"
+title: "Pattern Introduction"
 subtitle: ""
-summary: ""
+summary: "code interview patterns"
 authors: []
-tags: []
+tags: ["pattern"]
 categories: []
-date: 2019-12-02T16:29:57+08:00
-lastmod: 2019-12-02T16:29:57+08:00
+date: 2020-05-19T17:36:41+08:00
+lastmod: 2020-05-19T17:36:41+08:00
 featured: false
 draft: false
 
@@ -28,6 +28,7 @@ image:
 projects: []
 ---
 
+课程来源于：[Grokking the Coding Interview: Patterns for Coding Questions](https://www.educative.io/courses/grokking-the-coding-interview)
 
+课程将面试题目分为14种模式：
 
-# 思考的方式将
