@@ -3,7 +3,7 @@
 
 title: "Learngit"
 subtitle: ""
-summary: ""
+summary: "Git常用操作命令"
 authors: []
 tags: []
 categories: []
@@ -28,6 +28,9 @@ image:
 projects: []
 ---
 
+```c++
+int main(){
+    cout<<"hello world";
+}
+```
 
-
-# 思考的方式将

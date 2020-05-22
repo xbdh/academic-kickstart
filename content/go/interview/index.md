@@ -66,4 +66,3 @@ panic:触发异常
 
 > `defer` 的执行顺序是先进后出，当初`panic`语句时，会先按照`defer`的后进先出的顺序执行，最后才执行`panic`
 
-![gdhdf](./featured.jpg)
