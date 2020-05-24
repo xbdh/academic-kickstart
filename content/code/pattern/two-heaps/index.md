@@ -1,14 +1,14 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "Pattern Introduction"
+title: "Pattern-10 Two Heaps"
 subtitle: ""
-summary: "code interview patterns"
+summary: "双堆"
 authors: []
 tags: ["pattern"]
 categories: []
-date: 2020-05-19T17:36:41+08:00
-lastmod: 2020-05-19T17:36:41+08:00
+date: 2020-05-23T17:53:19+08:00
+lastmod: 2020-05-23T17:53:19+08:00
 featured: false
 draft: false
 
@@ -27,8 +27,3 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 ---
-
-课程来源于：[Grokking the Coding Interview: Patterns for Coding Questions](https://www.educative.io/courses/grokking-the-coding-interview)
-
-课程将面试题目分为14种模式：
-
