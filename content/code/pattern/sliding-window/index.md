@@ -37,38 +37,76 @@ projects: []
 > 求长度为K的连续子数组的平均值
 
 ```c++
-input	arrary:[1,3,2,6,-1,4,1,8,2] ,K=5
+input:	arrary:[1,3,2,6,-1,4,1,8,2] ,K=5
     
-output	[2.2,2.8,2.4,3.6,2,8]
+output:	[2.2,2.8,2.4,3.6,2,8]
 ```
 
 code:
 
 ```c++
-#include <iostream>
-#include <vector>
-using namespace std;
-
 vector<double> averageOfSubarrayOfSizeK(int k,vector<int> &arr){
     vector<double> result(arr.size() -k +1);
     int windowStart =0;
     double windowSum =0;
+    
     for(int windowEnd =0 ; windowEnd<arr.size() ;windowEnd++){
+        //加上下一个元素
         windowSum += arr[windowEnd];
+        
+        //到达sizeK，滑动窗口
         if(windowEnd >=k-1){
-            result[windowStart]=windowSum/k;
-            windowSum -=arr[windowStart];
-            windowStart++;
+            result[windowStart]=windowSum/k; //计算平均值
+            windowSum -=arr[windowStart];  //减去第一个窗口值
+            windowStart++; //滑动窗口
         }
     }
     return result;
 }
-int main() {
-    vector<int> arr={1,3,2,6,-1,4,1,8,2};
-    for(double d :averageOfSubarrayOfSizeK(5,arr)){
-        cout<<d<<" ";
+```
+
+
+
+### 2、maximum sum of subarray of size K
+
+> 求长度为K的连续子数组的最大值
+
+```c++
+input:	[2,1,5,1,3,2], k=3
+
+output:	9
+    
+subarray: [5,1,3]
+```
+
+```c++
+input:	[2,3,4,1,5] ,k=2
+
+output:	7
+    
+ subarray:	[3,4]
+```
+
+code:
+
+```c++
+int maxSumSubarrayOfSizeK(int k ,vector<int> &arr){
+    int windowStart =0;
+    int windowSum=0;
+    int maxSum=0;
+    
+    for(int windowEnd =0; windowEnd<arr.size() ;windowEnd++){
+        windowSum +=arr[windowEnd];
+        if (windowEnd>=k-1){
+            maxSum=max(maxSum,windowSum);
+            windowSum -= arr[windowStart];
+            windowStart++;
+        }
     }
-    return 0;
+    return maxSum;
 }
 ```
 
+Time:	*O*(N) 
+
+Space:	*O*(1)
