@@ -289,14 +289,21 @@ code:
 int findlength(const string &str) {
     int windowStart = 0;
     int maxLength = 0;
+
+    //记录处理后每个字符的最后索引位置，是索引位置，不是频率
     unordered_map<char, int> mp;
 
     for (int windowEnd = 0; windowEnd < str.size(); windowEnd++) {
         char rightChar = str[windowEnd];
+
+        //如果mp中已经包含rightchar,从windowStart侧缩小窗口
         if (mp.find(rightChar) != mp.end()) {
+
+            //此时窗口还未添加重复元素，改变窗口起始位，比较重复原元素后一位和windowStar大小
             windowStart = max(windowStart, mp[rightChar] + 1);
 
         }
+        //插入rightChar
         mp[rightChar] = windowEnd;
         maxLength = max(maxLength, windowEnd - windowStart + 1);
     }
@@ -308,4 +315,220 @@ int findlength(const string &str) {
 Time:	*O*(N) 
 
 Space:	*O*(K)
+
+
+
+### 7、longest substring with same letters after replacement
+
+> 取代不超过K个元素，求包含最长相同元素的字串
+>
+> 其中字符串全是小写
+
+```c++
+input:	string="aabccbb" ,k=2
+
+output:	5
+
+substring: bccbb->bbbbb
+```
+
+```c++
+input:	string="abccde" ,k=1
+
+output:	3
+
+substring: acc->ccc ccd->ccc
+```
+
+code:
+
+```c++
+int findLength(const string &str, int k) {
+    int windowStart = 0;
+    int maxLength = 0;
+    //记录每个窗口内重复最多的元素的个数
+    int maxRepeatLetterCount = 0;
+    //频率
+    unordered_map<char, int> frequencyMap;
+
+    for (int windowEnd = 0; windowEnd < str.size(); windowEnd++) {
+        char rightChar = str[windowEnd];
+        frequencyMap[rightChar]++;
+        maxRepeatLetterCount = max(maxRepeatLetterCount, frequencyMap[rightChar]);
+
+        //窗口的长度减去最多重复的个数，剩下的是可以替换的个数，如果超过K，就要缩小窗口
+        if (windowEnd - windowStart + 1 - maxRepeatLetterCount > k) {
+            char leftChar = str[windowStart];
+            frequencyMap[leftChar]--;
+            windowStart++;
+        }
+        maxLength = max(maxLength, windowEnd - windowStart + 1);
+    }
+    return maxLength;
+}
+```
+
+Time:	*O*(N) 
+
+Space:	*O*(1)
+
+
+
+### 8、longest subarray with ones after replacement
+
+> 数组只包含0和1，将不超过K个0取代为1，求最长连续只包含1的子数组
+
+> 同7
+
+```c++
+input: arrary=[0,1,1,0,0,0,1,1,0,1,1],k=2
+
+output:	6
+
+index=5,8; 0->1
+```
+
+```c++
+input: arrary=[0,1,0,0,1,1,0,1,1,0,0,1,1] ,k=3
+
+output:	9
+
+index=6,9,10; 0->1
+```
+
+code:
+
+```c++
+int findLength(const vector<int> &arr, int k) {
+    int windowStart = 0;
+    int maxLength = 0;
+    //记录每个窗口中1的个数
+    int maxOnesCount = 0;
+
+    for (int windowEnd = 0; windowEnd < arr.size(); windowEnd++) {
+        if (arr[windowEnd] == 1) {
+            maxOnesCount++;
+        }
+        if (windowEnd - windowStart + 1 - maxOnesCount > k) {
+            if (arr[windowStart] == 1) {
+                maxOnesCount--;
+            }
+            windowStart++;
+        }
+        maxLength = max(maxLength, windowEnd - windowStart + 1);
+    }
+    return maxLength;
+}
+
+```
+
+Time:	*O*(N) 
+
+Space:	*O*(1)
+
+
+
+### 9、permutation in a string 
+
+> 文本串和模式串，判断文本串中是否包含模式串的排列
+>
+> 串的排列：str=“abc”，排列：“abc","acb","bac","bca","cab","cba"
+
+```c++
+input:string="oidbcaf",pattern="abc"
+    
+output: true
+    
+permutation:bca<->abc
+```
+
+```c++
+input:string="odicf",pattern="dc"
+    
+output: false
+```
+
+code:
+
+
+
+
+
+### 10、string anagrams
+
+> 文本串和模式串，找出文本串中包含模式串的同文异构词的起始索引
+
+> 同文异构词就是全排列
+
+```c++
+input:string="ppqp",pattern="pq"
+    
+output: [1,2]
+    
+anagram:"pq","qp",startIndex=[1,2]
+```
+
+```c++
+input:string="abbcabc",pattern="abc"
+    
+output: [2,3,4]
+    
+anagram:"bca","cab","abc",startIndex=[3,4,5]
+```
+
+code：
+
+
+
+### 11、smallest window containing substring
+
+> 文本串和模式串，找出最短的文本字串，使得字串包含模式串所有元素
+
+> 与9相似
+
+```c++
+input:string="aabdec",pattern="abc"
+    
+output: "abdec"
+```
+
+```c++
+input:string="abdabca",pattern="abc"
+    
+output: "abc"
+```
+
+code:
+
+```c++
+
+```
+
+
+
+### 12、words concatenation
+
+>  给定一个字符串和一组相同长度的单词组成的字符串数组，在字符串中查找包含数组所有单词的子串，单词在字串中不重叠，求子串的起始位置
+
+```c++
+input:string="catfoxcat",words=["cat","fox"]
+    
+output: [0,3]
+
+substring:"catfox" -> index=0 ;"foxcat" ->index=3
+```
+
+```c++
+input:string="catcatfoxfox",words=["cat","fox"]
+    
+output: [3]
+
+substring:"catfox" -> index=3 
+```
+
+code:
+
+```c++
+程序有误
+```
 
