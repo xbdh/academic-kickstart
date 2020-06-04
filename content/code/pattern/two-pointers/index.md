@@ -122,6 +122,8 @@ code:
 
 ```c++
 int remove(vector<int> &arr) {
+    //nextNonDuplicate前面全是不重复的元素，同时承担计数功能
+    //nextNonDuplicate和i都是指针
     int nextNonDuplicate = 1;
     for (int i = 1; i < arr.size(); i++) {
         if (arr[nextNonDuplicate - 1] != arr[i]) {
@@ -130,6 +132,35 @@ int remove(vector<int> &arr) {
         }
     }
     return nextNonDuplicate;
+}
+```
+
+相似问题：
+
+> 删除有序数组中所有等于Target的元素，返回删除后的新数组长度
+
+```c++
+input:	[3, 2, 3, 6, 3, 10, 9, 3],key=3
+
+output: 4
+
+after remove:[2,3,10,9]
+```
+
+code:
+
+```c++
+int removeTaget(vector<int> &arr, int key) {
+    // nextElement代表不等于key的元素的新位置,同时计数
+    // nextElement和i都是指针
+    int nextElement = 0;
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] != key) {
+            arr[nextElement] = arr[i];
+            nextElement++;
+        }
+    }
+    return nextElement;
 }
 ```
 
