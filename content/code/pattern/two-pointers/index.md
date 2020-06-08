@@ -135,6 +135,10 @@ int remove(vector<int> &arr) {
 }
 ```
 
+Time Complexity :	*O*(N) 
+
+Space Complexity :	*O*(1)
+
 相似问题：
 
 > 删除有序数组中所有等于Target的元素，返回删除后的新数组长度
@@ -162,5 +166,188 @@ int removeTaget(vector<int> &arr, int key) {
     }
     return nextElement;
 }
+```
+
+Time Complexity :	*O*(N) 
+
+Space Complexity :	*O*(1)
+
+### 4、squaring a sorted arrary
+
+> 给定有序数组，将所有元素的平方有序输出
+
+```c++
+input:	[-2, -1, 0, 2, 3]
+
+output: [0 ,1 ,4 ,4 ,9]
+```
+
+```c++
+input:	[-3, -1, 0, 1, 2]
+
+output: [0 ,1 ,4 ,4 ,9]
+```
+
+code:
+
+```c++
+vector<int> makeSqueare(vector<int> arr) {
+    int n = arr.size();
+    vector<int> square(n);
+    int highestSquareIndex = n - 1;
+    //双指针
+    int right = n - 1;
+    int left = 0;
+    
+    while (right >= left) {
+        int leftSquare = arr[left] * arr[left];
+        int rightSquare = arr[right] * arr[right];
+        if (leftSquare > rightSquare) {
+            square[highestSquareIndex] = leftSquare;
+            highestSquareIndex--;
+            left++;
+        } else {
+            square[highestSquareIndex] = rightSquare;
+            highestSquareIndex--;
+            right--;
+        }
+    }
+    return square;
+}
+```
+
+Time Complexity :	*O*(N) 
+
+Space Complexity :	*O*(N)
+
+
+
+
+
+### 5、triplet sum to zero
+
+> 给定未排序的整数数组，找出所有和为0、长度为3且不重复的子数组
+
+> X+Y+Z=0  -> X+Y=_Z
+
+> 为了确保不重复，排序后的数组，重复元素相邻可略过
+
+```c++
+input:	[-3, 0, 1, 2, -1, 1, -2]
+
+output: [[-3 1 2 ][-2 0 2 ][-1 0 1 ]]
+```
+
+```c++
+input:	[-5, 2, -1, -2, 3]
+
+output: [[-5 2 3 ][-2 -1 3 ]]
+```
+
+code:
+
+```c++
+void searchPair(const vector<int> &arr, int targetSum, int left, vector<vector<int>> &triplets) {
+    //双指针
+    int right = arr.size() - 1;
+    while (left < right) {
+        int currentSum = arr[left] + arr[right];
+        if (currentSum == targetSum) {
+            triplets.push_back({-targetSum, arr[left], arr[right]});
+            left++;
+            right--;
+
+            //略过重复元素
+            while (left < right && arr[left] == arr[left - 1]) {
+                left++;
+            }
+            //略过重复元素
+            while (left < right && arr[right] == arr[right]) {
+                right--;
+            }
+        } else if (targetSum > currentSum) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+}
+
+vector<vector<int>> searchTriplets(vector<int> &arr) {
+    sort(arr.begin(), arr.end());
+    vector<vector<int>> triplets;
+    for (int i = 0; i < arr.size() - 2; i++) {
+        //略过重复元素
+        if (i > 0 && arr[i] == arr[i - 1]) {
+            continue;
+        }
+        searchPair(arr, -arr[i], i + 1, triplets);
+    }
+    return triplets;
+}
+```
+
+Time Complexity :	*O*(N^2^) 
+
+Space Complexity :	*O*(N)
+
+### 6、triplet sum close to target
+
+> 给定未排序数组和target值，找出长度为3的子数组，使得子数组的和尽可能接近target，返回子数组的和
+
+```c++
+input:	[-2, 0, 1, 2],target=2
+
+output: 1
+
+triplet: [-2,1,2]
+```
+
+```c++
+input:	[-3, 1, 1, 2],target=1
+
+output: 0
+
+triplet: [-3,1,2]
+```
+
+code:
+
+```c++
+int searchTriplet(vector<int> &arr, int targetSum) {
+    sort(arr.begin(), arr.end());
+    int smallestDifference = INT_MAX;
+    for (int i = 0; i < arr.size() - 2; i++) {
+        int left = i + 1;
+        int right = arr.size() - 1;
+        while (left < right) {
+            int targetDiff = targetSum - arr[i] - arr[left] - arr[right];
+            if (targetDiff == 0) {
+                return targetSum - targetDiff;
+            }
+            if (abs(targetDiff) < abs(smallestDifference)) {
+                smallestDifference = targetDiff;
+            }
+            if (targetDiff > 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
+    return targetSum - smallestDifference;
+}
+```
+
+Time Complexity :	*O*(N^2^) 
+
+Space Complexity :	*O*(N)
+
+### 7、triplets with smaller sum
+
+> 给定未排序数组和target值，找出所有triplets，使得其和小于target，返回满足条件的triplets的个数
+
+```c++
+
 ```
 

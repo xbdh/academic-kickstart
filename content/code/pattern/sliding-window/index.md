@@ -450,6 +450,46 @@ output: false
 
 code:
 
+```c++
+bool findPermutation(const string &str, const string &pattern) {
+    int windowStart = 0;
+    int matched = 0;
+    unordered_map<char, int> frequencyMap;
+    for (auto c: pattern) {
+        frequencyMap[c]++;
+    }
+
+    for (int windowEnd = 0; windowEnd < str.size(); windowEnd++) {
+        char rightChar = str[windowEnd];
+        if (frequencyMap.find(rightChar) != frequencyMap.end()) {
+            frequencyMap[rightChar]--;
+            if (frequencyMap[rightChar] == 0) {
+                matched++;
+            }
+
+        }
+        if (matched == (int) frequencyMap.size()) {
+            return true;
+        }
+
+        if (windowEnd >= pattern.length() - 1) {
+            char leftChar = str[windowStart];
+            windowStart++;
+            if (frequencyMap.find(leftChar) != frequencyMap.end()) {
+                if (frequencyMap[leftChar] == 0) {
+                    matched--;
+                }
+                frequencyMap[leftChar]++;
+            }
+        }
+    }
+    return false;
+}
+
+```
+
+
+
 
 
 
@@ -478,6 +518,44 @@ anagram:"bca","cab","abc",startIndex=[3,4,5]
 
 code：
 
+```c++
+vector<int> findStringAnagrams(const string &str, const string &pattern) {
+    int windowStart = 0;
+    int matched = 0;
+    unordered_map<char, int> frequencyMap;
+    vector<int> resultIndices;
+    for (auto c: pattern) {
+        frequencyMap[c]++;
+    }
+
+    for (int windowEnd = 0; windowEnd < str.size(); windowEnd++) {
+        char rightChar = str[windowEnd];
+        if (frequencyMap.find(rightChar) != frequencyMap.end()) {
+            frequencyMap[rightChar]--;
+            if (frequencyMap[rightChar] == 0) {
+                matched++;
+            }
+
+        }
+        if (matched == (int) frequencyMap.size()) {
+            resultIndices.push_back(windowStart);
+        }
+
+        if (windowEnd >= pattern.length() - 1) {
+            char leftChar = str[windowStart];
+            windowStart++;
+            if (frequencyMap.find(leftChar) != frequencyMap.end()) {
+                if (frequencyMap[leftChar] == 0) {
+                    matched--;
+                }
+                frequencyMap[leftChar]++;
+            }
+        }
+    }
+    return resultIndices;
+}
+```
+
 
 
 ### 11、smallest window containing substring
@@ -501,7 +579,43 @@ output: "abc"
 code:
 
 ```c++
+string findSubstring(const string &str, const string &pattern) {
+    int windowStart = 0;
+    int matched = 0;
+    int minLength = str.length() + 1;
+    int subStrStart = 0;
+    unordered_map<char, int> frequencyMap;
 
+    for (auto c: pattern) {
+        frequencyMap[c]++;
+    }
+
+    for (int windowEnd = 0; windowEnd < str.size(); windowEnd++) {
+        char rightChar = str[windowEnd];
+        if (frequencyMap.find(rightChar) != frequencyMap.end()) {
+            frequencyMap[rightChar]--;
+            if (frequencyMap[rightChar] == 0) {
+                matched++;
+            }
+
+        }
+        while (matched == (int) pattern.length()) {
+            if (minLength > windowEnd - windowStart + 1) {
+                minLength = windowEnd - windowStart + 1;
+                subStrStart = windowStart;
+            }
+            char leftChar = str[windowStart];
+            windowStart++;
+            if (frequencyMap.find(leftChar) != frequencyMap.end()) {
+                if (frequencyMap[leftChar] == 0) {
+                    matched--;
+                }
+                frequencyMap[leftChar]++;
+            }
+        }
+    }
+    return minLength > str.length() ? "" : str.substr(subStrStart, minLength);
+}
 ```
 
 
