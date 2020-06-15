@@ -30,13 +30,11 @@ projects: []
 
 
 
-[TOC]
-
-# 1、introduction
+## 1、introduction
 
 移动两个速度不同的指针，常在环形数组和链表问题中使用。
 
-# 2、linkedlist cycle
+## 2、linkedlist cycle
 
 > 判断链表是否有环
 
@@ -99,7 +97,7 @@ Time Complexity :	*O*(N)
 
 Space Complexity :	*O*(1)
 
-# 3、start of linkedlist cycle
+## 3、start of linkedlist cycle
 
 > 求带环链表的起点
 
@@ -155,7 +153,7 @@ Time Complexity :	*O*(N)
 
 Space Complexity :	*O*(1)
 
-# 4、happy number
+## 4、happy number
 
 > 判断整数是否是happy number
 
@@ -166,7 +164,7 @@ input:	23
  
 output:	true
 
-explanations: 2*2 + 3*3 = 4 + 9 = 13
+explanations: 	2*2 + 3*3 = 4 + 9 = 13
     		  1*1 + 3*3 = 1 + 9 = 10
     		  1*1 + 0*0 = 1 + 0 = 1
 ```
@@ -212,7 +210,7 @@ Time Complexity :	*O*(log N)
 
 Space Complexity :	*O*(1)
 
-# 5、middle of the linkedlist
+## 5、middle of the linkedlist
 
 > 求链表的中间节点
 
@@ -247,7 +245,7 @@ Time Complexity :	*O*(N)
 
 Space Complexity :	*O*(1)
 
-# 6、palindrome linkedlist
+## 6、palindrome linkedlist
 
 > 判断链表是否对称
 
@@ -312,7 +310,7 @@ Time Complexity :	*O*(N)
 
 Space Complexity :	*O*(1)
 
-# 7、rearrange a linkedlist
+## 7、rearrange a linkedlist
 
 > 给定一个单链表 L：L0→L1→…→Ln-1→Ln ，
 > 将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→…
@@ -381,7 +379,7 @@ Time Complexity :	*O*(N)
 
 Space Complexity :	*O*(1)
 
-# 8、cycle in a Circular array
+## 8、cycle in a Circular array
 
-> 没看到题目
+> 没看懂题目
 
