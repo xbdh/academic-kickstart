@@ -28,6 +28,8 @@ image:
 projects: []
 ---
 
+[TOC]
+
 
 
 ## 1、introduction
@@ -164,7 +166,7 @@ input:	23
  
 output:	true
 
-explanations: 	2*2 + 3*3 = 4 + 9 = 13
+explanations:  2*2 + 3*3 = 4 + 9 = 13
     		  1*1 + 3*3 = 1 + 9 = 10
     		  1*1 + 0*0 = 1 + 0 = 1
 ```

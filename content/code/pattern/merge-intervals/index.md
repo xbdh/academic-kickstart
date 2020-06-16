@@ -27,3 +27,7 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 ---
+
+## 1、introduction
+
+常用来解决重叠区间问题，如求重叠的区间或合并有重叠的区间
