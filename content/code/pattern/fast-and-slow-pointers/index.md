@@ -28,7 +28,7 @@ image:
 projects: []
 ---
 
-[TOC]
+
 
 
 
